@@ -1,16 +1,13 @@
 var d = document.getElementById("dibujito");
 var lienzo = d.getContext("2d"); // creamos lienzo en 2d
-//console.log(lienzo);
 var lineas = 30;
-var l = 0;
 var yi, xf;
 
-while(l < lineas)
+for(var l = 0; l < lineas; l++)
 {
 	yi = 10 * l;
 	xf = 10 * (l + 1);
 	createLine("#AAF", 0, yi, xf, 300);
-	l = l + 1;
 }
 
 // agregar lineas a los bordes izquierdo y inferior
