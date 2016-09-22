@@ -1,6 +1,5 @@
 var d = document.getElementById("dibujito");
 var lienzo = d.getContext("2d"); // creamos lienzo en 2d
-var lineas = 30;
 
 // funcion que maneja la creacion de mallas
 function createMalla(orientacion)
