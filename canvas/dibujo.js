@@ -1,36 +1,49 @@
 var d = document.getElementById("dibujito");
+var ancho = d.width;
 var lienzo = d.getContext("2d"); // creamos lienzo en 2d
+var texto = document.getElementById("texto_lineas");
+var boton = document.getElementById("botoncito");
 
-// funcion que maneja la creacion de mallas
-function createMalla(orientacion)
+
+// agregando y disparando evento cuando ocurra
+boton.addEventListener("click",dibujoPorClick);
+
+// funcion para dibujar por click
+function dibujoPorClick()
 {
-	var lineas = 30;
+	numeroLineas = parseInt(texto.value);
+	createMalla("izquierda",numeroLineas);
+	// agregar lineas a los bordes izquierdo y inferior
+	createLine("#F05", 1, 1, 1, 300);
+	createLine("#F05", 1, 299, 299, 299);
+
+}
+// funcion que maneja la creacion de mallas
+function createMalla(orientacion,nlineas)
+{
+	var lineas = nlineas;
 	var xi, yi, xf, yf;
+	var espacio = ancho / lineas;
 
 	for(var l = 0; l < lineas; l++)
 	{
 		if(orientacion == "izquierda"){
-			yi = 10 * l;
-			xf = 10 * (l + 1);
+			yi = espacio * l;
+			xf = espacio * (l + 1);
 			createLine("#AAF", 0, yi, xf, 300);
 		}
 		else if(orientacion == "derecha")
 		{
-			xi = 290 - l * 10;
-  			yf = 300 - l * 10;
+			xi = 290 - l * espacio;
+  			yf = 300 - l * espacio;
   			createLine("#AAF", xi, 0, 300, yf);
 		}
 	}
 }
 
-createMalla("izquierda");
-// agregar lineas a los bordes izquierdo y inferior
-createLine("#F05", 1, 1, 1, 300);
-createLine("#F05", 1, 299, 299, 299);
-
-createMalla("derecha");
+/*createMalla("derecha");
 createLine("#F05", 299, 1, 299, 299);
-createLine("#F05", 1, 1, 299, 1);
+createLine("#F05", 1, 1, 299, 1);*/
 
 // funcion que maneja la creacion de lineas
 function createLine(color,xInicial, yInicial, xFinal, yFinal)
